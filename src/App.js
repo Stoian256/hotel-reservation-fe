@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import HotelList from './components/HotelList';
+import HotelDetail from './components/HotelDetail';
 
-function App() {
+const App = () => {
+  const [selectedHotelId, setSelectedHotelId] = useState(null);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div>
+        <h1>Hotel Reservation System</h1>
+        {!selectedHotelId ? (
+            <HotelList onSelectHotel={setSelectedHotelId} />
+        ) : (
+            <HotelDetail hotelId={selectedHotelId} />
+        )}
+      </div>
   );
-}
+};
 
 export default App;
